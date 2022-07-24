@@ -13,6 +13,11 @@ st.set_page_config(
 )
 
 def load_image(image_path, image_size=(512, 256)):
+    """Loads and preprocesses images."""
+    # Cache image file locally.
+    if "http" in image_path:
+        image_path = tf.keras.utils.get_file(os.path.basename(image_url)[-128:], image_url)
+    # Load and convert to float32 numpy array, add batch dimension, and normalize to range [0, 1].
     img = tf.io.decode_image(
       tf.io.read_file(image_path),
       channels=3, dtype=tf.float32)[tf.newaxis, ...]
@@ -42,7 +47,7 @@ def st_ui():
             col1.image(image_upload1,use_column_width=True)
             content_image = load_image(image_upload1)
         else:
-            original_image = load_image("1.jpg")
+            original_image = load_image("https://raw.githubusercontent.com/RadientBrain/Neural-Style-Transfer---Streamlit/main/1.jpg")
     
     with st.spinner("Loading style image.."):
         if image_upload2 is not None:
@@ -51,7 +56,7 @@ def st_ui():
             style_image = load_image(image_upload2)
             style_image = tf.nn.avg_pool(style_image, ksize=[3,3], strides=[1,1], padding='VALID')
         else:
-            style_image = load_image("2.jpg")
+            style_image = load_image("https://raw.githubusercontent.com/RadientBrain/Neural-Style-Transfer---Streamlit/main/2.jpg")
             style_image = tf.nn.avg_pool(style_image, ksize=[3,3], strides=[1,1], padding='VALID')
     
 
