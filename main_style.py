@@ -30,7 +30,7 @@ def st_ui():
         original_image = load_image(image_upload1)
         image1 = Image.open(image_upload1)
     else:
-        original_image = load_image("https://raw.githubusercontent.com/RadientBrain/Neural-Style-Transfer---Streamlit/blob/main/2.jpg)
+        original_image = load_image("https://raw.githubusercontent.com/RadientBrain/Neural-Style-Transfer---Streamlit/blob/main/2.jpg")
         image1 = Image.open("https://raw.githubusercontent.com/RadientBrain/Neural-Style-Transfer---Streamlit/blob/main/2.jpg")
     if image_upload2 is not None:
         style_image = load_image(image_upload2)
