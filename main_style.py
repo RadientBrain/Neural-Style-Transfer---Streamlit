@@ -42,7 +42,7 @@ def st_ui():
             col1.image(image_upload1,use_column_width=True)
             content_image = load_image(image_upload1)
         else:
-            original_image = load_image(urlopen("http://raw.githubusercontent.com/RadientBrain/Neural-Style-Transfer---Streamlit/main/1.jpg"))
+            original_image = load_image("1.jpg"))
     
     with st.spinner("Loading style image.."):
         if image_upload2 is not None:
@@ -51,7 +51,7 @@ def st_ui():
             style_image = load_image(image_upload2)
             style_image = tf.nn.avg_pool(style_image, ksize=[3,3], strides=[1,1], padding='VALID')
         else:
-            style_image = load_image(urlopen("http://raw.githubusercontent.com/RadientBrain/Neural-Style-Transfer---Streamlit/main/2.jpg"))
+            style_image = load_image("2.jpg")
             style_image = tf.nn.avg_pool(style_image, ksize=[3,3], strides=[1,1], padding='VALID')
     
 
