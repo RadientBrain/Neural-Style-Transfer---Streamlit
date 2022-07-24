@@ -21,12 +21,11 @@ def load_image(image_buffer, image_size=(512, 256)):
     return img
 
 def export_image(tf_img):
-    tf_img = tf_img*255
-    tf_img = np.array(tf_img, dtype=np.uint8)
-    if np.ndim(tf_img)>3:
-        assert tf_img.shape[0] == 1
-        img = tf_img[0]
-    return Image.fromarray(img)
+	pil_image = Image.fromarray(np.squeeze(tf_img*255).astype(np.uint8))
+	buffer = BytesIO()
+	pil_image.save(buffer, format="PNG")
+	byte_image = buffer.getvalue()
+	return byte_image
 
 def st_ui():
     st.title("Image Styling")
@@ -67,7 +66,7 @@ def st_ui():
                 stylized_photo = results[0]
                 col3.header("Final Image")
                 col3.image(np.array(stylized_photo))
-                st.download_button(label="Download Final Image", data=export_image(stylized_photo).getdata(), file_name="stylized_image.png", mime="image/png")
+                st.download_button(label="Download Final Image", data=export_image(stylized_photo), file_name="stylized_image.png", mime="image/png")
 
         else:
             st.sidebar.markdown("Please upload images...")
