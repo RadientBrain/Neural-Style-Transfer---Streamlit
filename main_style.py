@@ -29,7 +29,6 @@ def export_image(tf_img):
 	return byte_image
 
 def st_ui():
-    st.title("Image Styling")
     image_upload1 = st.sidebar.file_uploader("Load your image 1 here",type=["jpeg", "png", "jpg"], accept_multiple_files=False, key=None, help="Upload the image whom you want to style")
     image_upload2 = st.sidebar.file_uploader("Load your image 2 here",type=["jpeg", "png", "jpg"], accept_multiple_files=False, key=None, help="Upload the image whose style you want")
     col1,col2,col3= st.columns(3)
