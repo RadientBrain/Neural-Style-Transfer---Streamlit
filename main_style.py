@@ -13,14 +13,13 @@ st.set_page_config(
     page_title="Neural Style Transfer", layout="wide"
 )
 
-def load_image(img_url, image_size=(512, 256)):
+def load_image(image_path, image_size=(512, 256)):
     """Loads and preprocesses images."""
     # Cache image file locally.
-    image_path = tf.keras.utils.get_file(os.path.basename(img_url)[-128:], img_url)
+    if "http" in image_path:
+        image_path = tf.keras.utils.get_file(os.path.basename(image_path)[-128:], image_path)
     # Load and convert to float32 numpy array, add batch dimension, and normalize to range [0, 1].
-    img = tf.io.decode_image(
-      tf.io.read_file(image_path),
-      channels=3, dtype=tf.float32)[tf.newaxis, ...]
+    img = tf.io.decode_image(tf.io.read_file(image_path),channels=3, dtype=tf.float32)[tf.newaxis, ...]
     img = tf.image.resize(img, image_size, preserve_aspect_ratio=True)
     return img
 
