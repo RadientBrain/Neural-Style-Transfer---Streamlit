@@ -3,7 +3,7 @@ from PIL import Image
 import numpy as np
 import tensorflow as tf
 import tensorflow_hub as tf_hub
-
+import matplotlib.pyplot as plt
 
 tf.executing_eagerly()
 st.set_option('deprecation.showfileUploaderEncoding', False)
@@ -11,14 +11,13 @@ st.set_page_config(
     page_title="Neural Style Transfer", layout="wide"
 )
 
-def load_image(image, image_size=(512, 256)):
-    img_array = np.array(image)
-    img = tf.image.resize(img_array, image_size, preserve_aspect_ratio=True)
-    # img = tf.expand_dims(img, axis=0)
-    # img = tf.io.decode_image(
-    #   tf.io.read_file(image_path),
-    #   channels=3, dtype=tf.float32)[tf.newaxis, ...]
-    # img = tf.image.resize(img, image_size, preserve_aspect_ratio=True)
+def load_image(image_buffer, image_size=(512, 256)):
+    img = plt.imread(image_buffer).astype(np.float32)[np.newaxis, ...]
+    if img.max() > 1.0:
+      img = img / 255.
+    if len(img.shape) == 3:
+      img = tf.stack([img, img, img], axis=-1)
+    img = tf.image.resize(img, image_size, preserve_aspect_ratio=True)
     return img
 
 def export_image(tf_img):
