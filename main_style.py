@@ -67,7 +67,7 @@ def st_ui():
                 stylized_photo = results[0]
                 col3.header("Final Image")
                 col3.image(np.array(stylized_photo))
-                st.download_button(label="Download Final Image", data=export_image(stylized_photo).value, file_name="stylized_image.png", mime="image/png")
+                st.download_button(label="Download Final Image", data=export_image(stylized_photo).getdata(), file_name="stylized_image.png", mime="image/png")
 
         else:
             st.sidebar.markdown("Please upload images...")
