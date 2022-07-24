@@ -41,7 +41,7 @@ def st_ui():
         if image_upload1 is not None:
             col1.header("Content Image")
             col1.image(image_upload1,use_column_width=True)
-            content_image = load_image(image_upload1)
+            original_image = load_image(image_upload1)
         else:
             original_image = load_image("1.jpg")
     
