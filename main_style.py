@@ -4,6 +4,7 @@ from PIL import Image
 import numpy as np
 import tensorflow as tf
 import tensorflow_hub as tf_hub
+import os
 
 
 tf.executing_eagerly()
@@ -16,7 +17,7 @@ def load_image(image_path, image_size=(512, 256)):
     """Loads and preprocesses images."""
     # Cache image file locally.
     if "http" in image_path:
-        image_path = tf.keras.utils.get_file(os.path.basename(image_url)[-128:], image_url)
+        image_path = tf.keras.utils.get_file(os.path.basename(image_url)[-128:], image_path)
     # Load and convert to float32 numpy array, add batch dimension, and normalize to range [0, 1].
     img = tf.io.decode_image(
       tf.io.read_file(image_path),
