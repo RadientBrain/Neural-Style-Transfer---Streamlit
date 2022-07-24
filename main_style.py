@@ -42,7 +42,7 @@ def st_ui():
             col1.image(image_upload1,use_column_width=True)
             content_image = load_image(image_upload1)
         else:
-            original_image = load_image("1.jpg"))
+            original_image = load_image("1.jpg")
     
     with st.spinner("Loading style image.."):
         if image_upload2 is not None:
