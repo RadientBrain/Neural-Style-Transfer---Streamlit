@@ -158,7 +158,6 @@ ipython-sql==0.3.9
 ipywidgets==7.7.1
 itsdangerous==1.1.0
 jax==0.3.14
-jaxlib @ https://storage.googleapis.com/jax-releases/cuda11/jaxlib-0.3.14+cuda11.cudnn805-cp37-none-manylinux2014_x86_64.whl
 jedi==0.18.1
 jieba==0.42.1
 Jinja2==2.11.3
@@ -372,11 +371,11 @@ tinycss2==1.1.1
 toml==0.10.2
 tomli==2.0.1
 toolz==0.12.0
-torch @ https://download.pytorch.org/whl/cu113/torch-1.12.0%2Bcu113-cp37-cp37m-linux_x86_64.whl
-torchaudio @ https://download.pytorch.org/whl/cu113/torchaudio-0.12.0%2Bcu113-cp37-cp37m-linux_x86_64.whl
+torch 
+torchaudio
 torchsummary==1.5.1
 torchtext==0.13.0
-torchvision @ https://download.pytorch.org/whl/cu113/torchvision-0.13.0%2Bcu113-cp37-cp37m-linux_x86_64.whl
+torchvision
 tornado==6.2
 tqdm==4.64.0
 traitlets==5.1.1
